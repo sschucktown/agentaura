@@ -3,7 +3,6 @@ services:
     name: agentaura-server
     env: node
     rootDir: apps/server
-    plan: free
     buildCommand: "npm ci && npm run build"
     startCommand: "npm start"
     envVars:
@@ -14,7 +13,6 @@ services:
     name: agentaura-frontend
     env: static
     rootDir: apps/frontend
-    plan: free
     buildCommand: "npm ci && npm run build"
     staticPublishPath: dist
     routes:
