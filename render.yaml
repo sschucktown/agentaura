@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: agentaura-server
+    env: node
+    rootDir: apps/server
+    plan: free
+    buildCommand: "npm ci && npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+
+  - type: static
+    name: agentaura-frontend
+    rootDir: apps/frontend
+    buildCommand: "npm ci && npm run build"
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        fromService:
+          type: web
+          name: agentaura-server
+          property: url
